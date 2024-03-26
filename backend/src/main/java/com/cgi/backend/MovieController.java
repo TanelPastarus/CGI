@@ -1,7 +1,9 @@
 package com.cgi.backend;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,14 +18,15 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @RequestMapping("/movie/{id}")
-    public Movie getMovieById(@PathVariable Long id) {
-        return movieService.getMovieById(id);
+    @GetMapping("/movie/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable Long id) {
+        if (movieService.getMovieById(id).isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else return new ResponseEntity<>(movieService.getMovieById(id).get(), HttpStatus.OK);
     }
 
-    @RequestMapping("/movies")
-    public List<Movie> getMovies() {
-        return movieService.getAllMovies();
+    @GetMapping("/movies")
+    public ResponseEntity<List<Movie>> getMovies() {
+        return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 
 

@@ -9,6 +9,13 @@
       <p><span>Language:</span> {{ movie.language }}</p>
       <p><span>Age Limit:</span> {{ movie.ageLimit }}</p>
     </div>
+
+    <div v-for="(row, i) in parsedArray" :key="i" class="row">
+      <p>{{ parsedArray[i] }}</p>
+      <div v-for="(value, j) in row" :key="j" class="box" :class="{ colored: value === 1 }">
+
+      </div>
+    </div>
   </div>
   </body>
 </template>
@@ -26,9 +33,19 @@ export default {
         language: "",
         ageLimit: "",
         genre: "",
+        jsonSeats:""
       },
+      parsedArray: []
     };
   },
+
+  watch: {
+  'movie.jsonSeats': function(newVal) {
+    if (newVal) {
+      this.parsedArray = JSON.parse(newVal);
+    }
+  }
+},
 
   methods: {
     fetchAMovie(id) {
@@ -45,6 +62,7 @@ export default {
     return date.toLocaleDateString('en-GB', options);
   },
   },
+
     mounted() {
       this.fetchAMovie(this.$route.params.id);
     },

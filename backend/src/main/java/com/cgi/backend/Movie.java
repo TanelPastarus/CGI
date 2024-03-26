@@ -2,10 +2,17 @@ package com.cgi.backend;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+
+@Setter
+@Getter
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
 
 
@@ -17,60 +24,6 @@ public class Movie {
     private String language;
     private String ageLimit;
     private String genre;
+    private String jsonSeats;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public int getFreeSeats() {
-        return freeSeats;
-    }
-
-    public void setFreeSeats(int freeSeats) {
-        this.freeSeats = freeSeats;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getAgeLimit() {
-        return ageLimit;
-    }
-
-    public void setAgeLimit(String ageLimit) {
-        this.ageLimit = ageLimit;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 }
