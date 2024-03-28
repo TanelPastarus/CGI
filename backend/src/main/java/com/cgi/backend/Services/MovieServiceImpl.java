@@ -1,5 +1,7 @@
-package com.cgi.backend;
+package com.cgi.backend.Services;
 
+import com.cgi.backend.Models.Movie;
+import com.cgi.backend.Repositories.MovieRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
