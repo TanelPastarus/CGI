@@ -15,6 +15,7 @@ public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepo;
 
+    // Constructor to populate the database with some movies
     public MovieServiceImpl(MovieRepository movieRepo) {
         this.movieRepo = movieRepo;
         int[][] array1 = populateRandomScreening();
@@ -28,7 +29,6 @@ public class MovieServiceImpl implements MovieService {
         int[][] array9 = populateRandomScreening();
         int[][] array10 = populateRandomScreening();
 
-        // ['G', 'PG', 'PG-13', 'R', 'NC-17']
         movieRepo.save(new Movie(1L, "The Matrix", LocalDateTime.parse("2024-10-10T10:00:00"), howManyFreeSeats(array1), "English", "PG-13", "Action", setArray(array1)));
         movieRepo.save(new Movie(2L, "The Matrix Reloaded", LocalDateTime.parse("2024-10-10T12:00:00"), howManyFreeSeats(array2), "Estonian", "R", "Action", setArray(array2)));
         movieRepo.save(new Movie(3L, "The Matrix Revolutions", LocalDateTime.parse("2024-10-10T14:00:00"), howManyFreeSeats(array3), "Russian", "R", "Action", setArray(array3)));
@@ -51,6 +51,7 @@ public class MovieServiceImpl implements MovieService {
         return movieRepo.findById(id);
     }
 
+    // Generate a random 10x10 array with 0s and 1s (0 = free seat, 1 = taken seat)
     public int[][] populateRandomScreening() {
         int[][] array = new int[10][10];
         Random random = new Random();
@@ -62,6 +63,7 @@ public class MovieServiceImpl implements MovieService {
         return array;
     }
 
+    // Count how many free seats are in the screening
     public int howManyFreeSeats(int[][] array) {
         int freeSeats = 0;
         for (int[] ints : array) {
@@ -74,6 +76,7 @@ public class MovieServiceImpl implements MovieService {
         return freeSeats;
     }
 
+    // Convert a 2D array to a JSON string
     public String setArray(int[][] array) {
         ObjectMapper objectMapper = new ObjectMapper();
 

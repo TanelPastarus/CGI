@@ -52,23 +52,11 @@ export default {
 </script>
 
 <style scoped>
-
-h1 {
-  font-size: 20px;
-}
-
 .title {
   text-align: left;
   font-weight: bold;
 }
-a {
-  text-decoration: none;
-  color:#2c3e50;
-  width: auto;
-}
-a:hover {
-  text-decoration: underline;
-}
+
 .item {
   text-align: left;
   position: relative;
@@ -88,35 +76,11 @@ a:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-
-
-button {
-  background: rgb(97, 85, 85);
-  margin: 20px 20px 20px 20px;
-  color: white;
-}
-
 select {
   margin: 10px;
   padding: 10px;
   font-size: 16px;
 }
 
-.router-link {
-  text-decoration: none;
-  color: black;
-}
-
-.row {
-  display: flex;
-}
-.box {
-  width: 20px;
-  height: 20px;
-  border: 1px solid black;
-}
-.box.colored {
-  background-color: blue;
-}
 
 </style>

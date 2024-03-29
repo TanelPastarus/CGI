@@ -9,6 +9,11 @@
         <p><span>Language:</span> {{ movie.language }}</p>
         <p><span>Age Limit:</span> {{ movie.ageLimit }}</p>
       </div>
+      <!-- Need to add a check, that only allows the user to save the movie once -->
+      <!-- Need to update the free seats after purchase--> 
+      <!-- It would be better to lock the screen first, after pressing choose seats
+      then let the user pick their own seats if they do not like suggested seats--> 
+
 
       <div class="seat-selection">
         <label for="numSeats">Number of seats:</label>
@@ -58,6 +63,7 @@ export default {
 },
 
   methods: {
+    // Fetch a movie by id
     fetchAMovie(id) {
       fetch(`http://localhost:8080/movie/${id}`)
           .then((response) => response.json())
@@ -66,16 +72,18 @@ export default {
           .catch((err) => console.log(err.message));
 
     },
+    // Choose seats, logging for debugging purposes
     chooseSeats() {
       const seats = this.findSeats(this.numSeats);
-      console.log(seats);
       if (seats) {
-        console.log(seats);
+        //console.log(seats);
       } else {
         alert("No available seats");
       }
     },
 
+
+    // Toggle seat selection
     toggleSeat(rowIndex, colIndex) {
       let selectedSeats = this.parsedArray.flat().filter(value => value === 2).length;
   
@@ -130,10 +138,10 @@ export default {
       });
     },
 
+  // Find n available seats as close to the center as possible
   findSeats(n) {
   let closestSeats = null;
   let minDistance = Infinity;
-  console.log(this.parsedArray);
 
   for (let row = 0; row < this.parsedArray.length; row++) {
     for (let col = 0; col <= this.parsedArray[row].length - n; col++) {
@@ -159,16 +167,16 @@ export default {
   }
 
   if (closestSeats) {
+    console.log(this.seatt);
     for (const [row, col] of closestSeats) {
       this.parsedArray[row][col] = 2;
     }
     for (const [row, col] of this.seatt) {
       this.parsedArray[row][col] = 0;
     }
+    this.seatt = closestSeats;
   }
 
-  
-  this.seatt = closestSeats;
   return closestSeats;
 },
 

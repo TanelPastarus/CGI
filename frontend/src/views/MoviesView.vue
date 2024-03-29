@@ -1,4 +1,4 @@
-<template>
+<template>tton
     <div>
       <label for="startTime">Start Time:</label>
       <select id="startTime" v-model="selectedStartTime">
@@ -41,6 +41,8 @@ export default {
       ageLimits: ['G', 'PG', 'PG-13', 'R', 'NC-17']
     }
   },
+
+  // Filter movies based on selected genre, age limit and start time
   computed: {
     filteredMovies() {
       return this.movies.filter(movie => 
@@ -69,22 +71,11 @@ export default {
 
 <style scoped>
 
-h1 {
-  font-size: 20px;
-}
-
 .title {
   text-align: left;
   font-weight: bold;
 }
-a {
-  text-decoration: none;
-  color:#2c3e50;
-  width: auto;
-}
-a:hover {
-  text-decoration: underline;
-}
+
 .item {
   text-align: left;
   position: relative;
@@ -104,14 +95,6 @@ a:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-
-
-button {
-  background: rgb(97, 85, 85);
-  margin: 20px 20px 20px 20px;
-  color: white;
-}
-
 select {
   margin: 10px;
   padding: 10px;
@@ -121,18 +104,6 @@ select {
 .router-link {
   text-decoration: none;
   color: black;
-}
-
-.row {
-  display: flex;
-}
-.box {
-  width: 20px;
-  height: 20px;
-  border: 1px solid black;
-}
-.box.colored {
-  background-color: blue;
 }
 
 </style>
